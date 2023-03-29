@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./header.css";
 import { Router, Link } from "react-router-dom";
+import Settings from "../SettingModal/Settings";
+import { Modal } from "react-bootstrap";
 
 const refreshPage = () => {
   window.location.reload();
@@ -16,10 +18,7 @@ function Header({ handleCallBack }) {
   });
   //console.log(times);
   const handleSetting = () => {
-    setShow(!show);
-  };
-  const handleChange = (e) => {
-    setTimes({ ...times, [e.target.name]: e.target.value });
+    setShow((prevValue) => !prevValue);
   };
   const onTrigger = () => {
     handleCallBack(times);
@@ -65,7 +64,18 @@ function Header({ handleCallBack }) {
           </Link>
         </li>
       </ul>
-      {show && (
+
+      <div className="divider"></div>
+         <Modal         size="lg"
+       show={show} onHide={handleSetting} >
+         <Settings
+           setShow={setShow}
+            times={times}
+            setTimes={setTimes}
+            handleSubmit={handleSubmit}
+         />
+       </Modal>
+      {/* {show && (
         <div className="container">
           <div className="head">
             <h4>TIMER SETTING</h4>
@@ -118,7 +128,7 @@ function Header({ handleCallBack }) {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }

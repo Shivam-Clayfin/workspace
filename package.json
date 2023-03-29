@@ -10,7 +10,7 @@
     "i18next": "21.8.5",
     "i18next-browser-languagedetector": "6.1.4",
     "react": "18.0.0",
-    "react-bootstrap": "2.4.0",
+    "react-bootstrap": "^2.4.0",
     "react-countdown": "2.3.2",
     "react-dom": "18.0.0",
     "react-i18next": "11.16.9",

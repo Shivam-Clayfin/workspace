@@ -1,11 +1,145 @@
-import React, { useRef, useState, useMemo, useEffect } from "react";
+//headerfile
+
+// import React, { useState } from "react";
+// import { Button } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import style from "./header.css";
+// // import valide from "../img/valide.png";
+// // import graph from "../img/graph.png";
+// // import user from "../img/user.png";
+// // import config from "../img/config.png";
+// // import styles from "./setting.module.css";
+// // import remove from "../img/remove.png";
+
+// const refreshPage = () => {
+//   window.location.reload();
+// };
+
+// function Header(props) {
+//   const [show, setShow] = useState(false);
+//   const [times, setTimes] = useState({
+//     one: 25,
+//     two: 15,
+//     three: 5
+//   });
+//   const handleSetting = () => {
+//     setShow(!show);
+//   };
+//   const handleChange = (e) => {
+//     setTimes({ ...times, [e.target.name]: Number(e.target.value) });
+//   };
+//   const onTrigger = () => {
+//     props.parentCallBack(times);
+//   };
+//   const handleSubmit = (e) => {
+//     setShow(false);
+//     onTrigger();
+//     e.preventDefault();
+//   };
+
+//   return (
+//     <>
+//       <div className="header">
+//         <div className="logo" onClick={refreshPage}>
+//           {/* <img alt="valide" /> */}
+//           <h3 className="title">Pomofocus</h3>
+//         </div>
+//         <div className="item">
+//           <div className="item">
+//             <img alt="" />
+//             <div className="itemtext">Report</div>
+//           </div>
+//           <div className="item" onClick={handleSetting}>
+//             <img alt="" />
+//             <div className="itemtext">Setting</div>
+//           </div>
+//           <div className="item">
+//             <img alt="" />
+//             <div>Login</div>
+//           </div>
+//         </div>
+//       </div>
+//       {show && (
+//         <div>
+//           <div>
+//             <h1>TIMER SETTING</h1>
+//             <div onClick={handleSetting}>
+//               <img alt="remove" />
+//             </div>
+//           </div>
+//           <div>
+//             <h1>Time (minutes)</h1>
+//             <div>
+//               <div>
+//                 <h4>Pomodoro</h4>
+//                 <input
+//                   value={times.one}
+//                   type="number"
+//                   name="one"
+//                   onChange={handleChange}
+//                 />
+//               </div>
+//               <div>
+//                 <h4>Short</h4>
+//                 <input
+//                   value={times.three}
+//                   type="number"
+//                   name="three"
+//                   onChange={handleChange}
+//                 />
+//               </div>
+//               <div>
+//                 <h4>Long</h4>
+//                 <input
+//                   value={times.two}
+//                   type="number"
+//                   name="two"
+//                   onChange={handleChange}
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div>
+//             <Button onClick={handleSubmit}>OK</Button>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// }
+
+// export default Header;
+
+// counter after handlelong
+// if (props.set.one !== which.one) {
+//   setWhich({ ...which, one: props.set.one });
+//   {
+//     clickedBy === "pomo" && setTime(props.set.one);
+//   }
+// } else if (props.set.two !== which.two) {
+//   setWhich({ ...which, two: props.set.two });
+//   {
+//     clickedBy === "short" && setTime(props.set.two);
+//   }
+// } else if (props.set.three !== which.three) {
+//   setWhich({ ...which, three: props.set.three });
+//   {
+//     clickedBy === "long" && setTime(props.set.three);
+//   }
+// }
+// props.call(clickedBy);
+
+
+
+
+///////
+import React, { useRef, useState, useMemo } from "react";
 import Countdown, { zeroPad } from "react-countdown";
+import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./counter.css";
-import { useNavigate } from "react-router-dom";
 
 function Counter({ data, handle }) {
-  let history = useNavigate();
   //for pause timer
   const [pause, setPause] = useState(true);
   //for timer start initial state is 25 because we want default is 25 mins
@@ -16,7 +150,6 @@ function Counter({ data, handle }) {
     two: 15,
     three: 5
   });
-  const [isDisable, setisDisable] = useState(false);
   // define state for timerNumber counter we are clicked like pomo short or long
   const [clickedBy, setClickedBy] = useState("pomo");
   //use useRef hook for  handling rerendering of timer
@@ -36,27 +169,23 @@ function Counter({ data, handle }) {
     "http://cld3097web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.05.mp3"
   );
 
+  const startAud = () => {
+    audio.play();
+  };
+  const refreshPage = () => {
+    alert(startAud());
+    setClickedBy("pomo");
+  };
 
   const arr = JSON.parse(localStorage.getItem("timesData")) || [];
   const removeTodo = (index) => {
     arr.splice(index, 1);
     localStorage.setItem("timesData", JSON.stringify(arr));
   };
-  useEffect(() => {
-    if (arr.length === 0) {
-      setisDisable(true);
-    } else {
-      setisDisable(false);
-    }
-  }, [arr]);
-
-  // console.log("out" + arr.length);
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
-      audio.play();
-      alert("timer over");
       removeTodo();
-      history("/reports");
+      refreshPage();
     } else {
       return (
         <span>
@@ -68,7 +197,7 @@ function Counter({ data, handle }) {
   };
   const Timer = (value) => {
     return (
-      <h1 className="counterStyle">
+      <h1>
         <Countdown
           date={value}
           ref={clockRef}
@@ -116,9 +245,6 @@ function Counter({ data, handle }) {
   const date = useMemo(() => {
     return Date.now() + 60000 * time;
   }, [time]);
-
-
-
   const Style = { backgroundColor: "rgba(0, 0, 0, 0.15)" };
   var Stylee = null;
   if (clickedBy === "pomo") {
@@ -141,7 +267,7 @@ function Counter({ data, handle }) {
   return (
     <>
       <div className="counter">
-        <div className="items">
+        <div className="item">
           <div
             className="itemText"
             style={clickedBy === "pomo" ? Style : null}
@@ -163,29 +289,27 @@ function Counter({ data, handle }) {
         </div>
         {Timer(date)}
         {pause ? (
-          <button
-            disabled={isDisable}
+          <Button
+            style={Stylee}
             onClick={() => {
               handleStart();
               Pause();
             }}>
             START
-          </button>
+          </Button>
         ) : (
-          <button
+          <Button
+            style={Stylee}
             onClick={() => {
               handlePause();
               Pause();
             }}>
             STOP
-          </button>
+          </Button>
         )}
       </div>
 
-      <div className="footer">{footer()}</div>
-
       <div className="taskOut">
-
         {arr.map((e) => {
           return (
             <div className="footerInput">
@@ -194,8 +318,10 @@ function Counter({ data, handle }) {
           );
         })}
       </div>
+      <div className="footer">{footer()}</div>
     </>
   );
 }
 
 export default Counter;
+
