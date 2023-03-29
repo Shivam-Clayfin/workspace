@@ -1,0 +1,56 @@
+.signup {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+}
+.signuptitel {
+  font-size: 48px;
+  font-weight: 600;
+}
+.signupForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.signupForm > label {
+  margin: 10px 0;
+}
+.signupInput {
+  padding: 10px;
+  background-color: white;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.signupButton {
+  width: 50%;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: teal;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.signupLogin {
+  width: 10%;
+  position: absolute;
+  top: 60px;
+  right: 100px;
+  background-color: lightcoral;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+h6 {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  font-size: 10px;
+  color: blue;
+}
