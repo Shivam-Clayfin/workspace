@@ -1,0 +1,327 @@
+//headerfile
+
+// import React, { useState } from "react";
+// import { Button } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import style from "./header.css";
+// // import valide from "../img/valide.png";
+// // import graph from "../img/graph.png";
+// // import user from "../img/user.png";
+// // import config from "../img/config.png";
+// // import styles from "./setting.module.css";
+// // import remove from "../img/remove.png";
+
+// const refreshPage = () => {
+//   window.location.reload();
+// };
+
+// function Header(props) {
+//   const [show, setShow] = useState(false);
+//   const [times, setTimes] = useState({
+//     one: 25,
+//     two: 15,
+//     three: 5
+//   });
+//   const handleSetting = () => {
+//     setShow(!show);
+//   };
+//   const handleChange = (e) => {
+//     setTimes({ ...times, [e.target.name]: Number(e.target.value) });
+//   };
+//   const onTrigger = () => {
+//     props.parentCallBack(times);
+//   };
+//   const handleSubmit = (e) => {
+//     setShow(false);
+//     onTrigger();
+//     e.preventDefault();
+//   };
+
+//   return (
+//     <>
+//       <div className="header">
+//         <div className="logo" onClick={refreshPage}>
+//           {/* <img alt="valide" /> */}
+//           <h3 className="title">Pomofocus</h3>
+//         </div>
+//         <div className="item">
+//           <div className="item">
+//             <img alt="" />
+//             <div className="itemtext">Report</div>
+//           </div>
+//           <div className="item" onClick={handleSetting}>
+//             <img alt="" />
+//             <div className="itemtext">Setting</div>
+//           </div>
+//           <div className="item">
+//             <img alt="" />
+//             <div>Login</div>
+//           </div>
+//         </div>
+//       </div>
+//       {show && (
+//         <div>
+//           <div>
+//             <h1>TIMER SETTING</h1>
+//             <div onClick={handleSetting}>
+//               <img alt="remove" />
+//             </div>
+//           </div>
+//           <div>
+//             <h1>Time (minutes)</h1>
+//             <div>
+//               <div>
+//                 <h4>Pomodoro</h4>
+//                 <input
+//                   value={times.one}
+//                   type="number"
+//                   name="one"
+//                   onChange={handleChange}
+//                 />
+//               </div>
+//               <div>
+//                 <h4>Short</h4>
+//                 <input
+//                   value={times.three}
+//                   type="number"
+//                   name="three"
+//                   onChange={handleChange}
+//                 />
+//               </div>
+//               <div>
+//                 <h4>Long</h4>
+//                 <input
+//                   value={times.two}
+//                   type="number"
+//                   name="two"
+//                   onChange={handleChange}
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div>
+//             <Button onClick={handleSubmit}>OK</Button>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// }
+
+// export default Header;
+
+// counter after handlelong
+// if (props.set.one !== which.one) {
+//   setWhich({ ...which, one: props.set.one });
+//   {
+//     clickedBy === "pomo" && setTime(props.set.one);
+//   }
+// } else if (props.set.two !== which.two) {
+//   setWhich({ ...which, two: props.set.two });
+//   {
+//     clickedBy === "short" && setTime(props.set.two);
+//   }
+// } else if (props.set.three !== which.three) {
+//   setWhich({ ...which, three: props.set.three });
+//   {
+//     clickedBy === "long" && setTime(props.set.three);
+//   }
+// }
+// props.call(clickedBy);
+
+
+
+
+///////
+import React, { useRef, useState, useMemo } from "react";
+import Countdown, { zeroPad } from "react-countdown";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./counter.css";
+
+function Counter({ data, handle }) {
+  //for pause timer
+  const [pause, setPause] = useState(true);
+  //for timer start initial state is 25 because we want default is 25 mins
+  const [time, setTime] = useState(25);
+  //this state is for timer count timerNumber number of counter we are
+  const [timerNumber, setTimerNumber] = useState({
+    one: 25,
+    two: 15,
+    three: 5
+  });
+  // define state for timerNumber counter we are clicked like pomo short or long
+  const [clickedBy, setClickedBy] = useState("pomo");
+  //use useRef hook for  handling rerendering of timer
+
+  const clockRef = useRef();
+  const handleStart = () => {
+    clockRef.current.start();
+  };
+  const handlePause = () => {
+    clockRef.current.pause();
+  };
+  const Pause = () => {
+    setPause(!pause);
+  };
+
+  const audio = new Audio(
+    "http://cld3097web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.05.mp3"
+  );
+
+  const startAud = () => {
+    audio.play();
+  };
+  const refreshPage = () => {
+    alert(startAud());
+    setClickedBy("pomo");
+  };
+
+  const arr = JSON.parse(localStorage.getItem("timesData")) || [];
+  const removeTodo = (index) => {
+    arr.splice(index, 1);
+    localStorage.setItem("timesData", JSON.stringify(arr));
+  };
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      removeTodo();
+      refreshPage();
+    } else {
+      return (
+        <span>
+          {/* The length you want to pad The default is 2, timerNumber emulates classic padding behavior. */}
+          {zeroPad(minutes)}:{zeroPad(seconds)}
+        </span>
+      );
+    }
+  };
+  const Timer = (value) => {
+    return (
+      <h1>
+        <Countdown
+          date={value}
+          ref={clockRef}
+          autoStart={false}
+          renderer={renderer}
+        />
+      </h1>
+    );
+  };
+  const handleOne = () => {
+    setClickedBy("pomo");
+    clockRef.current.stop();
+    setTime(timerNumber.one);
+    setPause(true);
+  };
+  const handleTwo = () => {
+    setClickedBy("short");
+    clockRef.current.stop();
+    setTime(timerNumber.three);
+    setPause(true);
+  };
+  const handleThree = () => {
+    setClickedBy("long");
+    clockRef.current.stop();
+    setTime(timerNumber.two);
+    setPause(true);
+  };
+  if (data.one !== timerNumber.one) {
+    setTimerNumber({ ...timerNumber, one: data.one });
+    {
+      clickedBy === "pomo" && setTime(data.one);
+    }
+  } else if (data.two !== timerNumber.two) {
+    setTimerNumber({ ...timerNumber, two: data.two });
+    {
+      clickedBy === "short" && setTime(data.two);
+    }
+  } else if (data.three !== timerNumber.three) {
+    setTimerNumber({ ...timerNumber, three: data.three });
+    {
+      clickedBy === "long" && setTime(data.three);
+    }
+  }
+  handle(clickedBy);
+  const date = useMemo(() => {
+    return Date.now() + 60000 * time;
+  }, [time]);
+  const Style = { backgroundColor: "rgba(0, 0, 0, 0.15)" };
+  var Stylee = null;
+  if (clickedBy === "pomo") {
+    Stylee = { color: "#468e91" };
+  } else if (clickedBy === "short") {
+    Stylee = { color: "#468e91" };
+  } else {
+    Stylee = { color: "#437ea8" };
+  }
+  const footer = () => {
+    if (clickedBy === "pomo") {
+      return "Time to Work !";
+    } else if (clickedBy === "short") {
+      return "Time for a Break";
+    } else {
+      return "Time for a Long Break";
+    }
+  };
+
+  return (
+    <>
+      <div className="counter">
+        <div className="item">
+          <div
+            className="itemText"
+            style={clickedBy === "pomo" ? Style : null}
+            onClick={handleOne}>
+            Pomodoro
+          </div>
+          <div
+            className="itemText"
+            style={clickedBy === "short" ? Style : null}
+            onClick={handleTwo}>
+            Short Break
+          </div>
+          <div
+            className="itemText"
+            style={clickedBy === "long" ? Style : null}
+            onClick={handleThree}>
+            Long Break
+          </div>
+        </div>
+        {Timer(date)}
+        {pause ? (
+          <Button
+            style={Stylee}
+            onClick={() => {
+              handleStart();
+              Pause();
+            }}>
+            START
+          </Button>
+        ) : (
+          <Button
+            style={Stylee}
+            onClick={() => {
+              handlePause();
+              Pause();
+            }}>
+            STOP
+          </Button>
+        )}
+      </div>
+
+      <div className="taskOut">
+        {arr.map((e) => {
+          return (
+            <div className="footerInput">
+              <h4>Task : {e.task}</h4>
+            </div>
+          );
+        })}
+      </div>
+      <div className="footer">{footer()}</div>
+    </>
+  );
+}
+
+export default Counter;
+
