@@ -4,55 +4,68 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: skyblue;
+  color: white;
+  background: #8A2387;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #F27121, #E94057, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+.logoLogin {
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px 60px 20px -40px;
+
+}
+.logoLogin img {
+  height: 55px;
+  width: 55px;
+  margin-right: 4px;
+  margin-top: -8px;
+}
+.logoLoginTitle {
+  font-family: 26px;
+  line-height: 1.4em;
+  font-weight: bold;
 }
 .logintitel {
-  font-size: 48px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 500;
 }
-.loginForm {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.loginForm > label {
-  margin: 10px 0;
-}
-.loginInput {
-  padding: 10px;
-  background-color: white;
-  border: none;
+.containerR {
+  position: relative;
+  width: 30%;
+  height: 400px;
+  font-size: 16px;
+  font-weight: bolder;
+  margin: 4px;
+  padding: 15px;
+  backdrop-filter: blur(5px) saturate(180%);
+  -webkit-backdrop-filter: blur(5px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
 }
 .loginButton {
-  width: 50%;
+  width: 80%;
   margin-top: 20px;
-  cursor: pointer;
-  background-color: lightcoral;
-  border: none;
+  cursor:crosshair;
+  background: #654ea3;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eaafc8, #654ea3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: none;
   color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 10px;
 }
 .loginButton:disabled {
   cursor: not-allowed;
   background-color: rgb(239, 171, 147);
 }
-.register {
-  width: 10%;
-  position: absolute;
-  top: 60px;
-  right: 100px;
-  background-color: teal;
-  cursor: pointer;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  color: white;
-}
 h6 {
-  position: absolute;
-  top: 50px;
-  right: 100px;
-  font-size: 10px;
-  color: blue;
+  margin-top: 30px;
+  font-size: 12px;
 }

@@ -39,6 +39,7 @@
 }
 .link {
   text-decoration: none;
+  color: white;
 }
 .item {
   display: flex;
@@ -66,7 +67,12 @@
 }
 .divider {
   height: 1px;
-  margin: 9px 0;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin: auto;
   overflow: hidden;
   background-color: #bf0a0a;
   border-radius: 100px;

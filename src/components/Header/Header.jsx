@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import "./header.css";
-import { Router, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Settings from "../SettingModal/Settings";
 import { Modal } from "react-bootstrap";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18n/i18n";
 
-const refreshPage = () => {
-  window.location.reload();
-};
+
+
 
 function Header({ handleCallBack }) {
+
+
+  const navigation = useNavigate()
+  const { t} = useTranslation();
+
   const [show, setShow] = useState(false);
   const [times, setTimes] = useState({
     one: 25,
@@ -20,6 +28,9 @@ function Header({ handleCallBack }) {
   const handleSetting = () => {
     setShow((prevValue) => !prevValue);
   };
+
+  const handleClose = () => setShow(false);
+
   const onTrigger = () => {
     handleCallBack(times);
   };
@@ -31,14 +42,31 @@ function Header({ handleCallBack }) {
     arr.push(times);
     localStorage.setItem("timesData", JSON.stringify(arr));
   };
+  const res = localStorage.getItem("UserData");
+
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      localStorage.clear()
+      navigation("/login")
+    }).catch((error) => {
+      console.log("first", error)
+    });
+  }
+  const onChangeLang =(e) => {
+    i18n.changeLanguage(e);
+  }
 
   return (
     <>
       <ul className="header">
-        <div className="logo" onClick={refreshPage}>
-          <img src="https://pomofocus.io/icons/icon-white.png" alt="valide" />
-          <h3 className="title">Pomofocus</h3>
-        </div>
+        <li className="items">
+          <Link className="link" to="/">
+            <div className="logo" >
+              <img src="https://pomofocus.io/icons/icon-white.png" alt="valide" />
+              <h3 className="title">{t("Pomo:Login")}</h3>
+            </div>
+          </Link>
+        </li>
         <li className="items">
           <Link className="link" to="/reports">
             <div className="item">
@@ -56,25 +84,35 @@ function Header({ handleCallBack }) {
           </Link>
         </li>
         <li className="items">
-          <Link className="link" to="/login">
+
+          {res ? <Link className="link" onClick={handleLogout} to="/">
             <div className="item">
-              <img src="https://pomofocus.io/icons/user-white.png" alt="" />
-              <div>Login</div>
+              <img src="https://pomofocus.io/icons/icon-white.png" alt="" />
+              <div>Logout</div>
             </div>
-          </Link>
+          </Link> :
+            <Link className="link" to="/login">
+              <div className="item">
+                <img src="https://pomofocus.io/icons/user-white.png" alt="" />
+                <div>Login</div>
+              </div>
+            </Link>
+          }
         </li>
+    
       </ul>
 
       <div className="divider"></div>
-         <Modal         size="lg"
-       show={show} onHide={handleSetting} >
-         <Settings
-           setShow={setShow}
-            times={times}
-            setTimes={setTimes}
-            handleSubmit={handleSubmit}
-         />
-       </Modal>
+      <Modal size="lg"
+        show={show} onHide={handleSetting} >
+        <Settings
+          setShow={setShow}
+          times={times}
+          setTimes={setTimes}
+          handleSubmit={handleSubmit}
+          handleClose={handleClose}
+        />
+      </Modal>
       {/* {show && (
         <div className="container">
           <div className="head">

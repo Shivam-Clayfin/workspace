@@ -2,10 +2,10 @@ import React, { useRef, useState, useMemo, useEffect } from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./counter.css";
-import { useNavigate } from "react-router-dom";
+import { Button, ListGroup, Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
 
 function Counter({ data, handle }) {
-  let history = useNavigate();
+  const[show,setShow] = useState(false)
   //for pause timer
   const [pause, setPause] = useState(true);
   //for timer start initial state is 25 because we want default is 25 mins
@@ -31,11 +31,9 @@ function Counter({ data, handle }) {
   const Pause = () => {
     setPause(!pause);
   };
-
-  const audio = new Audio(
-    "http://cld3097web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.05.mp3"
-  );
-
+  // const audio = new Audio(
+  //   "https://file-examples.com/storage/fef89aabc36429826928b9c/2017/11/file_example_MP3_700KB.mp3"
+  // );
 
   const arr = JSON.parse(localStorage.getItem("timesData")) || [];
   const removeTodo = (index) => {
@@ -49,15 +47,16 @@ function Counter({ data, handle }) {
       setisDisable(false);
     }
   }, [arr]);
+  const handleClose = () => {
+    // removeTodo();
+    // audio.pause()
+    setShow(false);
+  };
 
-  // console.log("out" + arr.length);
   const renderer = ({ minutes, seconds, completed }) => {
-    if (completed) {
-      audio.play();
-      alert("timer over");
-      removeTodo();
-      history("/reports");
-    } else {
+    if (completed) {  
+      setShow(true)
+        } else {
       return (
         <span>
           {/* The length you want to pad The default is 2, timerNumber emulates classic padding behavior. */}
@@ -120,14 +119,6 @@ function Counter({ data, handle }) {
 
 
   const Style = { backgroundColor: "rgba(0, 0, 0, 0.15)" };
-  var Stylee = null;
-  if (clickedBy === "pomo") {
-    Stylee = { color: "#468e91" };
-  } else if (clickedBy === "short") {
-    Stylee = { color: "#468e91" };
-  } else {
-    Stylee = { color: "#437ea8" };
-  }
   const footer = () => {
     if (clickedBy === "pomo") {
       return "Time to Work !";
@@ -164,6 +155,7 @@ function Counter({ data, handle }) {
         {Timer(date)}
         {pause ? (
           <button
+          className="button"
             disabled={isDisable}
             onClick={() => {
               handleStart();
@@ -173,6 +165,7 @@ function Counter({ data, handle }) {
           </button>
         ) : (
           <button
+          className="button"
             onClick={() => {
               handlePause();
               Pause();
@@ -181,17 +174,38 @@ function Counter({ data, handle }) {
           </button>
         )}
       </div>
-
       <div className="footer">{footer()}</div>
       <div className="taskOut">
+      <ListGroup numbered>
         {arr.map((e) => {
           return (
-            <div className="footerInput">
-              <h4>Task : {e.task}</h4>
-            </div>
+            <ListGroup.Item
+              as="li"
+              className="d-flex mt-6 justify-content-between align-items-start"
+            >
+              <div className="ms-2 me-auto">
+                <div className="fw-bold" >{e.task}</div>
+              </div>
+             
+            </ListGroup.Item>
           );
         })}
+        </ListGroup>
       </div>
+      <Modal         size="sm"
+       show={show} onHide={handleClose}>
+          <ModalHeader closeButton>
+        <h4 className="title">TIMER SETTING</h4>
+      </ModalHeader>
+      <ModalBody>
+        <div>Timer Complete</div>
+        </ModalBody>
+        <ModalFooter>
+        <Button className='mb-2' variant="primary" onClick={handleClose}>
+          Okay
+        </Button>
+      </ModalFooter>
+       </Modal>
     </>
   );
 }
