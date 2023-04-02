@@ -65,9 +65,9 @@ export default function Reports() {
         className="d-flex mb-6 justify-content-between align-items-start"
       >
         <div className="ms-2 me-auto">
-          <div className="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
+          <div className="fw-bold">{e.task}</div>
+          PomoDoro:{e.one}
+          </div>
         <Badge bg="danger" onClick={removeTodoList} >
           Delete
         </Badge>

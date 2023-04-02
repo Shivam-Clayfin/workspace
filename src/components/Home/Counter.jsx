@@ -183,9 +183,7 @@ function Counter({ data, handle }) {
       </div>
 
       <div className="footer">{footer()}</div>
-
       <div className="taskOut">
-
         {arr.map((e) => {
           return (
             <div className="footerInput">

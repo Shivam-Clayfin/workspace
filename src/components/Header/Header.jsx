@@ -80,7 +80,6 @@ function Header({ handleCallBack }) {
           <div className="head">
             <h4>TIMER SETTING</h4>
             <div onClick={handleSetting} className="remove">
-              <img alt="remove" />
             </div>
           </div>
           <div className="time">
