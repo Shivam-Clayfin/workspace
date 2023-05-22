@@ -8,7 +8,7 @@ import { signOut } from "firebase/auth";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18n/i18n";
 
-
+//pomofocous
 
 
 function Header({ handleCallBack }) {
@@ -52,16 +52,49 @@ function Header({ handleCallBack }) {
       console.log("first", error)
     });
   }
-  const onChangeLang =(e) => {
-    i18n.changeLanguage(e);
+  const onChangeLang = () => {
+
+    let changeLang = "en"
+
+    if (lang === "en") {
+      changeLang = "ar"
+    }
+
+    // console.log('changeLang..', changeLang)
+    i18n.changeLanguage(changeLang);
+
+    changeCSS(changeLang)
+
+    setLang(changeLang)
+
   }
+
+  const changeCSS = (lng, cssLinkIndex) => {
+
+    if (lng === "en") {
+      // console.log('lng..en', lng)``
+
+      let ensheet = document.getElementById("style-direction");
+      ensheet.removeAttribute("disabled");
+      let oldsheet = document.getElementById("style-direction-ltr");
+      oldsheet.disabled = true
+    } else if (lng === "ar") {
+      // console.log('lng..ar', lng)
+      let ensheet = document.getElementById("style-direction-ltr");
+      ensheet.removeAttribute("disabled");
+      let oldsheet = document.getElementById("style-direction");
+      oldsheet.disabled = true;
+    }
+  }
+
+  const [lang, setLang] = useState("en")
 
   return (
     <>
       <ul className="header">
         <li className="items">
           <Link className="link" to="/">
-            <div className="logo" >
+            <div className="logo" onClick={onChangeLang} >
               <img src="https://pomofocus.io/icons/icon-white.png" alt="valide" />
               <h3 className="title">{t("Pomo:Login")}</h3>
             </div>

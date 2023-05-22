@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
+
+
+//pomofocous
 export default function Signup() {
   const navigation = useNavigate();
   const [email, setEmail] = useState("");

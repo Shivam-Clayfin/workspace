@@ -3,7 +3,7 @@ import "./Settings.css";
 import { Form, FormControl, FormGroup, FormLabel, ModalBody, ModalFooter, ModalHeader } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 
-
+//pomofocous
 function Settings({ setTimes, times, handleSubmit,handleClose }) {
   const handleChange = (e) => {
     setTimes({ ...times, [e.target.name]: e.target.value });

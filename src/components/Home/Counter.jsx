@@ -3,7 +3,7 @@ import Countdown, { zeroPad } from "react-countdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./counter.css";
 import { Button, ListGroup, Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
-
+//pomofocous
 function Counter({ data, handle }) {
   const[show,setShow] = useState(false)
   //for pause timer

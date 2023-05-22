@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18n/i18n";
-
+//pomofocous
 export default function Login() {
   const router = useNavigate();
   const { t } = useTranslation();
