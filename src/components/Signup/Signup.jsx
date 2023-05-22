@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18n/i18n";
 
 
 //pomofocous

@@ -3,8 +3,12 @@ import Countdown, { zeroPad } from "react-countdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./counter.css";
 import { Button, ListGroup, Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+
 //pomofocous
 function Counter({ data, handle }) {
+  const { t} = useTranslation();
+
   const[show,setShow] = useState(false)
   //for pause timer
   const [pause, setPause] = useState(true);
@@ -121,11 +125,11 @@ function Counter({ data, handle }) {
   const Style = { backgroundColor: "rgba(0, 0, 0, 0.15)" };
   const footer = () => {
     if (clickedBy === "pomo") {
-      return "Time to Work !";
+      return (t("Pomo:TimeToWork"));
     } else if (clickedBy === "short") {
-      return "Time for a Break";
+      return(t("Pomo:TimeForBreak"))
     } else {
-      return "Time for a Long Break";
+      return(t("Pomo:TimeForLongBreak"))
     }
   };
 
@@ -137,19 +141,19 @@ function Counter({ data, handle }) {
             className="itemText"
             style={clickedBy === "pomo" ? Style : null}
             onClick={handleOne}>
-            Pomodoro
+            {t("Pomo:Pomo")}
           </div>
           <div
             className="itemText"
             style={clickedBy === "short" ? Style : null}
             onClick={handleTwo}>
-            Short Break
+            {t("Pomo:ShortBreak")}
           </div>
           <div
             className="itemText"
             style={clickedBy === "long" ? Style : null}
             onClick={handleThree}>
-            Long Break
+            {t("Pomo:LongBreak")}
           </div>
         </div>
         {Timer(date)}
@@ -161,7 +165,7 @@ function Counter({ data, handle }) {
               handleStart();
               Pause();
             }}>
-            START
+            {t("Pomo:Start")}
           </button>
         ) : (
           <button
@@ -170,7 +174,7 @@ function Counter({ data, handle }) {
               handlePause();
               Pause();
             }}>
-            STOP
+            {t("Pomo:Stop")}
           </button>
         )}
       </div>

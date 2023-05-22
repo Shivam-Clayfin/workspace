@@ -57,46 +57,48 @@ function Header({ handleCallBack }) {
     let changeLang = "en"
 
     if (lang === "en") {
-      changeLang = "ar"
+      changeLang = "hn"
     }
 
     // console.log('changeLang..', changeLang)
     i18n.changeLanguage(changeLang);
-
-    changeCSS(changeLang)
-
     setLang(changeLang)
 
   }
 
-  const changeCSS = (lng, cssLinkIndex) => {
+  // const changeCSS = (lng, cssLinkIndex) => {
 
-    if (lng === "en") {
-      // console.log('lng..en', lng)``
+  //   if (lng === "en") {
+  //     // console.log('lng..en', lng)``
 
-      let ensheet = document.getElementById("style-direction");
-      ensheet.removeAttribute("disabled");
-      let oldsheet = document.getElementById("style-direction-ltr");
-      oldsheet.disabled = true
-    } else if (lng === "ar") {
-      // console.log('lng..ar', lng)
-      let ensheet = document.getElementById("style-direction-ltr");
-      ensheet.removeAttribute("disabled");
-      let oldsheet = document.getElementById("style-direction");
-      oldsheet.disabled = true;
-    }
-  }
+  //     let ensheet = document.getElementById("style-direction");
+  //     ensheet.removeAttribute("disabled");
+  //     let oldsheet = document.getElementById("style-direction-ltr");
+  //     oldsheet.disabled = true
+  //   } else if (lng === "ar") {
+  //     // console.log('lng..ar', lng)
+  //     let ensheet = document.getElementById("style-direction-ltr");
+  //     ensheet.removeAttribute("disabled");
+  //     let oldsheet = document.getElementById("style-direction");
+  //     oldsheet.disabled = true;
+  //   }
+  // }
 
   const [lang, setLang] = useState("en")
+  // const handleLang=(e)=>{
+  //   let changeLang = e.target.value
+  //   i18n.changeLanguage(changeLang);
+  //   setLang(changeLang)
+  // }
 
   return (
     <>
       <ul className="header">
         <li className="items">
           <Link className="link" to="/">
-            <div className="logo" onClick={onChangeLang} >
+            <div className="logo" >
               <img src="https://pomofocus.io/icons/icon-white.png" alt="valide" />
-              <h3 className="title">{t("Pomo:Login")}</h3>
+              <h3 className="title">{t("Pomo:Pomo")}</h3>
             </div>
           </Link>
         </li>
@@ -104,7 +106,7 @@ function Header({ handleCallBack }) {
           <Link className="link" to="/reports">
             <div className="item">
               <img src="https://pomofocus.io/icons/graph-white.png" alt="" />
-              <div className="itemtext">Report</div>
+              <div className="itemtext">{t("Pomo:Reports")}</div>
             </div>
           </Link>
         </li>
@@ -112,7 +114,7 @@ function Header({ handleCallBack }) {
           <Link className="link" to="/">
             <div className="item" onClick={handleSetting}>
               <img src="https://pomofocus.io/icons/config-white.png" alt="" />
-              <div className="itemtext">Setting</div>
+              <div className="itemtext">{t("Pomo:Settings")}</div>
             </div>
           </Link>
         </li>
@@ -121,16 +123,24 @@ function Header({ handleCallBack }) {
           {res ? <Link className="link" onClick={handleLogout} to="/">
             <div className="item">
               <img src="https://pomofocus.io/icons/icon-white.png" alt="" />
-              <div>Logout</div>
+              <div>{t("Pomo:Logout")}</div>
             </div>
           </Link> :
             <Link className="link" to="/login">
               <div className="item">
                 <img src="https://pomofocus.io/icons/user-white.png" alt="" />
-                <div>Login</div>
+                <div>{t("Pomo:Login")}</div>
               </div>
             </Link>
           }
+        </li>
+        <li className="items">
+          <Link className="link" to="/">
+            <div className="item" onClick={onChangeLang}>
+              <img src="https://cdn-icons-png.flaticon.com/128/4459/4459205.png" alt="" />
+              <div className="itemtext">{t("Pomo:Language")}</div>
+            </div>
+          </Link>
         </li>
     
       </ul>

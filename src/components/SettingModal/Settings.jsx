@@ -2,21 +2,25 @@ import React from 'react'
 import "./Settings.css";
 import { Form, FormControl, FormGroup, FormLabel, ModalBody, ModalFooter, ModalHeader } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
+import { useTranslation } from "react-i18next";
 
 //pomofocous
 function Settings({ setTimes, times, handleSubmit,handleClose }) {
+
+  const { t} = useTranslation();
+
   const handleChange = (e) => {
     setTimes({ ...times, [e.target.name]: e.target.value });
   };
   return (
     <div>
       <ModalHeader closeButton>
-        <h4 className="title">TIMER SETTING</h4>
+        <h4 className="title">{t("Pomo:TimerSetting")}</h4>
       </ModalHeader>
       <ModalBody>
         <Form className='row'>
           <FormGroup className="col-12 col-sm-6 col-md-6 col-lg-6">
-            <FormLabel>Pomodoro</FormLabel>
+            <FormLabel>{t("Pomo:Pomo")}</FormLabel>
             <FormControl
               type="number"
               className='mb-3'
@@ -26,7 +30,7 @@ function Settings({ setTimes, times, handleSubmit,handleClose }) {
               onChange={handleChange}
 
             />
-            <FormLabel>Short</FormLabel>
+            <FormLabel>{t("Pomo:Short")}</FormLabel>
             <FormControl
               type="number"
               autoFocus
@@ -36,7 +40,7 @@ function Settings({ setTimes, times, handleSubmit,handleClose }) {
             />
           </FormGroup>
           <FormGroup className="col-12 col-sm-6 col-md-6 col-lg-6">
-            <FormLabel>Long</FormLabel>
+            <FormLabel>{t("Pomo:Long")}</FormLabel>
             <FormControl
               type="number"
               className='mb-3'
@@ -45,10 +49,10 @@ function Settings({ setTimes, times, handleSubmit,handleClose }) {
               name="two"
               onChange={handleChange}
             />
-            <FormLabel>Task</FormLabel>
+            <FormLabel>{t("Pomo:Task")}</FormLabel>
             <FormControl
               type="text"
-              placeholder="Task Name"
+              placeholder={t("Pomo:TaskName")}
               required
               value={times.task}
               name="task"
@@ -60,10 +64,10 @@ function Settings({ setTimes, times, handleSubmit,handleClose }) {
       </ModalBody>
       <ModalFooter>
         <Button className='mb-2' variant="secondary"onClick={handleClose} >
-          Cancle
+          {t("Pomo:Cancel")}
         </Button>
         <Button className='mb-2' variant="primary" onClick={handleSubmit}>
-          Save
+          {t("Pomo:Save")}
         </Button>
       </ModalFooter>
     </div>

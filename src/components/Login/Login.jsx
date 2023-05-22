@@ -4,7 +4,6 @@ import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { useTranslation } from "react-i18next";
-import i18n from "../../i18n/i18n";
 //pomofocous
 export default function Login() {
   const router = useNavigate();
@@ -32,35 +31,35 @@ export default function Login() {
   return (
     <div className="login">
 
-        <div className="logoLogin" >
+        <div className="logoLogin" onClick={()=>router("/")}>
           <img src="https://pomofocus.io/icons/icon-white.png" alt="valide" />
-          <h1 className="logoLoginTitle">Pomofocus</h1>
+          <h1 className="logoLoginTitle">{t("Pomo:Pomo")}</h1>
         </div>
       <div className="containerR">
       <span className="logintitel">{t("Pomo:Login")}</span>
       <div className="divideSignup"></div>    
       <form onSubmit={(e) => handelLogin(e)}>
         <div className="mb-2">
-          <label>Email address</label>
+          <label>{t("Pomo:EmailAdress")}</label>
         </div>
         <div className="mb-3">
         <input
             type="email"
             className="form-control"
-            placeholder="Enter email"
+            placeholder={t("Pomo:EnterEmail")}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
           />
         </div>
         <div className="mb-2">
-          <label>Password</label>
+          <label>{t("Pomo:Password")}</label>
         </div>
         <div className="mb-3">
         <input
             type="password"
             className="form-control"
-            placeholder="Enter password"
+            placeholder={t("Pomo:EnterPass")}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -73,17 +72,17 @@ export default function Login() {
           className="btn btn-primary"
           disabled={!email||!password?true:false}
           >
-            Submit
+            {t("Pomo:Submit")}
           </button>
         </div>
         <p className="forgot-password text-right mt-3">
-          Forgot <a href="#">password?</a>
+          {t("Pomo:Forgot")} <a className="ml-2" href="#">{t("Pomo:Password")}</a>
         </p>
       </form>
       </div>
-        <h6>If you don't have Account</h6>
+        <h6>{t("Pomo:DontHaveAccount")}</h6>
        <Link className="link" to="/signup">
-        Create an Account
+            {t("Pomo:CreateAcc")}
       </Link> 
     </div>
   );
