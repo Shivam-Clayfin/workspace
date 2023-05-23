@@ -30,5 +30,10 @@
     "EnterEmail":"Enter Email",
     "EnterPass":"Enter Password",
     "DontHaveAccount":"If you don't have Account",
-    "CreateAcc":"Create an Account"
+    "CreateAcc":"Create an Account",
+    "UserName":"User Name",
+    "EnterUserName":"Enter User Name",
+    "CreatePassword":"Create Password",
+    "IfYouHaveAcc":"If you have existing account",
+    "LoginWithPassword":"Login With Password"
 }

@@ -5,12 +5,13 @@ import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
 import { useTranslation } from "react-i18next";
-import i18n from "../../i18n/i18n";
 
 
 //pomofocous
 export default function Signup() {
   const navigation = useNavigate();
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -29,45 +30,45 @@ export default function Signup() {
 
   return (
     <div className="signup">
-      <div className="logoLogin" >
+      <div className="logoLogin"onClick={()=>navigation("/")}  >
         <img src="https://pomofocus.io/icons/icon-white.png" alt="valide" />
-        <h1 className="logoLoginTitle">Pomofocus</h1>
+        <h1 className="logoLoginTitle">{t("Pomo:Pomo")}</h1>
       </div>
       <div className="containerR">
-        <span className="signuptitel">Create An Account</span> 
+        <span className="signuptitel">{t("Pomo:CreateAcc")}</span> 
         <div className="divideSignup"></div>    
          <form onSubmit={()=>handelSignup()}>
           <div className="mb-2">
-            <label>User Name</label>
+            <label>{t("Pomo:UserName")}</label>
           </div>
           <div className="mb-3">
             <input
               type="text"
               className="form-control"
-              placeholder="Enter User Name"
+              placeholder={t("Pomo:EnterUserName")}
               onChange={(e) => setName(e.target.value)}
 
             />
           </div>
           <div className="mb-2">
-          <label>Email address</label>
+          <label>{t("Pomo:EmailAdress")}</label>
         </div>
         <div className="mb-3">
         <input
             type="email"
             className="form-control"
-            placeholder="Enter email"
+            placeholder={t("Pomo:EnterEmail")}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
           <div className="mb-2">
-            <label>Create Password</label>
+            <label>{t("Pomo:CreatePassword")}</label>
           </div>
           <div className="mb-3">
             <input
               type="password"
               className="form-control"
-              placeholder="Create password"
+              placeholder={t("Pomo:CreatePassword")}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -78,7 +79,7 @@ export default function Signup() {
              className="btn btn-primary"
              disabled={!email||!password?true:false}
              >
-              Submit
+              {t("Pomo:Submit")}
             </button>
           </div>
            
@@ -110,9 +111,9 @@ export default function Signup() {
           Signup
         </button>
       </form> */}
-              <h6>If you have existing account</h6>
+              <h6>{t("Pomo:IfYouHaveAcc")}</h6>
       <Link className="link" to="/login">
-       Login With Password
+       {t("Pomo:LoginWithPassword")}
       </Link>
     </div>
   );

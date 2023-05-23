@@ -2,7 +2,6 @@ import "./reports.css";
 import Badge from 'react-bootstrap/Badge';
 import Header from "../Header/Header";
 import { Accordion } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 //pomofocous
 export default function Reports() {

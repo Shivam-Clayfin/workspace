@@ -30,6 +30,11 @@
     "EnterEmail":"ईमेल दर्ज करें",
     "EnterPass":"पासवर्ड दर्ज करें",
     "DontHaveAccount":"यदि आपके पास खाता नहीं है",
-    "CreateAcc":"खाता बनाएं"
+    "CreateAcc":"खाता बनाएं",
+    "UserName":"युज़र नाम",
+    "EnterUserName":"युज़र नाम दर्ज करें",
+    "CreatePassword":"पासवर्ड बनाएं",
+    "IfYouHaveAcc":"यदि आपके पास मौजूदा खाता है",
+    "LoginWithPassword":"पासवर्ड के साथ लॉगिन करें"
 
 }
