@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next";
 
 //pomofocous
 function Counter({ data, handle }) {
-  const { t} = useTranslation();
+  const { t } = useTranslation();
 
-  const[show,setShow] = useState(false)
+  const [show, setShow] = useState(true)
   //for pause timer
   const [pause, setPause] = useState(true);
   //for timer start initial state is 25 because we want default is 25 mins
@@ -51,16 +51,32 @@ function Counter({ data, handle }) {
       setisDisable(false);
     }
   }, [arr]);
+
+
   const handleClose = () => {
-    // removeTodo();
-    // audio.pause()
-    setShow(false);
+    setShow(false)
+    removeTodo();
+    window.location.reload();
   };
 
   const renderer = ({ minutes, seconds, completed }) => {
-    if (completed) {  
-      setShow(true)
-        } else {
+    if (completed) {
+      return (
+        <Modal show={show} variant="success">
+          <ModalHeader>
+            <h4 className="title">{t("Pomo:Pomo")}</h4>
+          </ModalHeader>
+          <ModalBody>
+            <div>{t("Pomo:TimerDone")}</div>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => handleClose()} variant="outline-success">
+              {t("Pomo:Okay")}
+            </Button>
+          </ModalFooter>
+        </Modal>
+      )
+    } else {
       return (
         <span>
           {/* The length you want to pad The default is 2, timerNumber emulates classic padding behavior. */}
@@ -127,9 +143,9 @@ function Counter({ data, handle }) {
     if (clickedBy === "pomo") {
       return (t("Pomo:TimeToWork"));
     } else if (clickedBy === "short") {
-      return(t("Pomo:TimeForBreak"))
+      return (t("Pomo:TimeForBreak"))
     } else {
-      return(t("Pomo:TimeForLongBreak"))
+      return (t("Pomo:TimeForLongBreak"))
     }
   };
 
@@ -159,7 +175,7 @@ function Counter({ data, handle }) {
         {Timer(date)}
         {pause ? (
           <button
-          className="button"
+            className="button"
             disabled={isDisable}
             onClick={() => {
               handleStart();
@@ -169,47 +185,33 @@ function Counter({ data, handle }) {
           </button>
         ) : (
           <button
-          className="button"
+            className="button"
             onClick={() => {
               handlePause();
               Pause();
             }}>
-            {t("Pomo:Stop")}
+            {t("Pomo:Pause")}
           </button>
         )}
       </div>
       <div className="footer">{footer()}</div>
       <div className="taskOut">
-      <ListGroup numbered>
-        {arr.map((e) => {
-          return (
-            <ListGroup.Item
-              as="li"
-              className="d-flex mt-6 justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold" >{e.task}</div>
-              </div>
-             
-            </ListGroup.Item>
-          );
-        })}
+        <ListGroup numbered>
+          {arr.map((e) => {
+            return (
+              <ListGroup.Item
+                as="li"
+                className="d-flex mt-6 justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold" >{e.task}</div>
+                </div>
+
+              </ListGroup.Item>
+            );
+          })}
         </ListGroup>
       </div>
-      <Modal         size="sm"
-       show={show} onHide={handleClose}>
-          <ModalHeader closeButton>
-        <h4 className="title">TIMER SETTING</h4>
-      </ModalHeader>
-      <ModalBody>
-        <div>Timer Complete</div>
-        </ModalBody>
-        <ModalFooter>
-        <Button className='mb-2' variant="primary" onClick={handleClose}>
-          Okay
-        </Button>
-      </ModalFooter>
-       </Modal>
     </>
   );
 }

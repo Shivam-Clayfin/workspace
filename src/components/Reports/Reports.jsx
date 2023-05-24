@@ -12,6 +12,7 @@ export default function Reports() {
     mainData.splice(index, 1);
     localStorage.setItem("timesData", JSON.stringify(mainData));
     window.location.reload();
+
   };
 
 
@@ -30,7 +31,7 @@ export default function Reports() {
                 <div className="text-danger">{t("Pomo:Pomo")} : {e.one}</div>
                 <div className="text-info"> {t("Pomo:Short")} : {e.three}</div>
                 <div className="text-primary">  {t("Pomo:Long")} : {e.two}</div>
-                <Badge bg="danger" onClick={removeTodoList(e)} >
+                <Badge bg="danger" onClick={removeTodoList} >
                   {t("Pomo:Delete")}
                 </Badge>
                 </div>

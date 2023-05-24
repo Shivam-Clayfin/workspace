@@ -35,5 +35,8 @@
     "EnterUserName":"Enter User Name",
     "CreatePassword":"Create Password",
     "IfYouHaveAcc":"If you have existing account",
-    "LoginWithPassword":"Login With Password"
+    "LoginWithPassword":"Login With Password",
+    "PleaseLogin":"Please Login First",
+    "TimerDone":"Timer Complete",
+    "Okay":"Okay"
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./header.css";
 import { Link, useNavigate } from "react-router-dom";
 import Settings from "../SettingModal/Settings";
-import { Modal } from "react-bootstrap";
+import { Alert, Button, Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,7 @@ function Header({ handleCallBack }) {
   const { t} = useTranslation();
 
   const [show, setShow] = useState(false);
+  const [lang, setLang] = useState("en")
   const [times, setTimes] = useState({
     one: 25,
     two: 15,
@@ -64,26 +65,6 @@ function Header({ handleCallBack }) {
 
   }
 
-  // const changeCSS = (lng, cssLinkIndex) => {
-
-  //   if (lng === "en") {
-  //     // console.log('lng..en', lng)``
-
-  //     let ensheet = document.getElementById("style-direction");
-  //     ensheet.removeAttribute("disabled");
-  //     let oldsheet = document.getElementById("style-direction-ltr");
-  //     oldsheet.disabled = true
-  //   } else if (lng === "ar") {
-  //     // console.log('lng..ar', lng)
-  //     let ensheet = document.getElementById("style-direction-ltr");
-  //     ensheet.removeAttribute("disabled");
-  //     let oldsheet = document.getElementById("style-direction");
-  //     oldsheet.disabled = true;
-  //   }
-  // }
-
-  const [lang, setLang] = useState("en")
-
   return (
     <>
       <ul className="header">
@@ -104,12 +85,21 @@ function Header({ handleCallBack }) {
           </Link>
         </li>
         <li className="items">
+          {res?
           <Link className="link" to="/">
             <div className="item" onClick={handleSetting}>
               <img src="https://pomofocus.io/icons/config-white.png" alt="" />
               <div className="itemtext">{t("Pomo:Settings")}</div>
             </div>
           </Link>
+          :
+          <Link className="link" to="/">
+          <div className="item" onClick={()=>alert(t("Pomo:PleaseLogin"))}>
+            <img src="https://pomofocus.io/icons/config-white.png" alt="" />
+            <div className="itemtext">{t("Pomo:Settings")}</div>
+          </div>
+        </Link>
+          }
         </li>
         <li className="items">
 

@@ -14,8 +14,8 @@
     "TimeForBreak":"छोटे ब्रेक का समय",
     "TimeForLongBreak":"एक लम्बे ब्रेक का समय",
     "TimerSetting":"समय सेटिंग",
-    "Long":"लंबा",
-    "Short":"छोटा",
+    "Long":"लंबा ब्रेक",
+    "Short":"छोटा ब्रेक",
     "Task":"काम",
     "Cancel":"रद्द करो",
     "Save":"सेव",
@@ -35,6 +35,8 @@
     "EnterUserName":"युज़र नाम दर्ज करें",
     "CreatePassword":"पासवर्ड बनाएं",
     "IfYouHaveAcc":"यदि आपके पास मौजूदा खाता है",
-    "LoginWithPassword":"पासवर्ड के साथ लॉगिन करें"
-
+    "LoginWithPassword":"पासवर्ड के साथ लॉगिन करें",
+    "PleaseLogin":"कृपया पहले लॉग इन करें",
+    "TimerDone":"समय समाप्त",
+    "Okay":"ठीक है"
 }

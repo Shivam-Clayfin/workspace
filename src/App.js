@@ -10,21 +10,21 @@ function App() {
     three: 1 / 6,
     task: []
   });
-  const [back, setBack] = useState("pomo");
+  const [Clicked, setClicked] = useState("pomo");
 
   const handle = (data) => {
-    setBack(data);
+    setClicked(data);
   };
   const handleCallBack = (item) => {
     setData({ ...item, item });
   };
 
   var Style = null;
-  if (back === "pomo") {
+  if (Clicked === "pomo") {
     Style = { backgroundColor: "rgb(217, 85, 80)" };
-  } else if (back === "short") {
+  } else if (Clicked === "short") {
     Style = { backgroundColor: "rgb(76, 145, 149)" };
-  } else if (back === "long") {
+  } else if (Clicked === "long") {
     Style = { backgroundColor: "rgb(69, 124, 163)" };
   }
   return (
