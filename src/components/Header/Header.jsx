@@ -59,8 +59,6 @@ function Header({ handleCallBack }) {
     if (lang === "en") {
       changeLang = "hn"
     }
-
-    // console.log('changeLang..', changeLang)
     i18n.changeLanguage(changeLang);
     setLang(changeLang)
 
@@ -85,11 +83,6 @@ function Header({ handleCallBack }) {
   // }
 
   const [lang, setLang] = useState("en")
-  // const handleLang=(e)=>{
-  //   let changeLang = e.target.value
-  //   i18n.changeLanguage(changeLang);
-  //   setLang(changeLang)
-  // }
 
   return (
     <>
@@ -145,7 +138,7 @@ function Header({ handleCallBack }) {
     
       </ul>
 
-      <div className="divider"></div>
+      {/* <div className="divider"></div> */}
       <Modal size="lg"
         show={show} onHide={handleSetting} >
         <Settings

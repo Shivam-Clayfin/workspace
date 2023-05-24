@@ -30,6 +30,7 @@ function App() {
   return (
     <div style={Style}>
       <Header handleCallBack={handleCallBack} />
+      <div className="divider"></div>
       <Counter data={data} handle={handle} />
     </div>
   );

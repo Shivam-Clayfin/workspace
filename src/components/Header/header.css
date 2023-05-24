@@ -1,5 +1,5 @@
 .header {
-  width: 33%;
+  width: 42%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,8 +15,8 @@
   align-content: center;
   align-items: center;
   cursor: pointer;
-  margin-left: -80px;
-  margin-right: 60px;
+  margin-left: -50px;
+  margin-right: 40px;
 
 }
 .logo img {
@@ -79,74 +79,4 @@
   background-color: rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
 }
-/*pomofocous
-/* .container {
-  width: 35%;
-  display: flexbox;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  position: absolute;
-  background-color: white;
-  z-index: 10;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-left: 33.5%;
-  margin-top: 5%;
-}
 
-.head {
-  width: 80%;
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-}
-.time {
-  display: flexbox;
-  font-size: 14px;
-  justify-content: space-around;
-  align-content: flex-start;
-  width: 90%;
-  margin: auto;
-}
-.pomo {
-  display: flex;
-  width: 80%;
-  justify-content: center;
-}
-.pomoD {
-  width: 20%;
-  margin: 10%;
-}
-.input {
-  border-radius: 4px;
-  background-color: rgb(239, 239, 239);
-  font-size: 12px;
-  padding: 10px;
-  width: 20px;
-  border: none;
-  color: rgb(85, 85, 85);
-  box-sizing: border-box;
-}
-.remove {
-  width: 17px;
-  height: 17px;
-  cursor: pointer;
-}
-.btnOk {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  padding: 8px 12px;
-  background-color: rgb(34, 34, 34);
-  border: 2px solid rgb(34, 34, 34);
-  width: 25%;
-  margin: 5px;
-  margin-left: 35%;
-} */
