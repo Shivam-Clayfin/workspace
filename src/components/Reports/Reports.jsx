@@ -3,7 +3,7 @@ import Badge from 'react-bootstrap/Badge';
 import Header from "../Header/Header";
 import { Accordion } from "react-bootstrap";
 import { t } from "i18next";
-//pomofocous
+//pomofocous timer
 export default function Reports() {
 
   const mainData = JSON.parse(localStorage.getItem("timesData")) || [];

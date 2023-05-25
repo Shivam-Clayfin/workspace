@@ -35,5 +35,5 @@ function App() {
     </div>
   );
 }
-// pomo
+//pomofocous timer
 export default App;

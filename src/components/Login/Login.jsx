@@ -4,7 +4,7 @@ import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { useTranslation } from "react-i18next";
-//pomofocous
+//pomofocous timer
 export default function Login() {
   const router = useNavigate();
   const { t } = useTranslation();

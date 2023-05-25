@@ -4,7 +4,7 @@ import { Form, FormControl, FormGroup, FormLabel, ModalBody, ModalFooter, ModalH
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from "react-i18next";
 
-//pomofocous
+//pomofocous timer
 function Settings({ setTimes, times, handleSubmit,handleClose }) {
 
   const { t} = useTranslation();

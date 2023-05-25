@@ -5,7 +5,8 @@ import "./counter.css";
 import { Button, ListGroup, Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-//pomofocous
+//pomofocous timer
+
 function Counter({ data, handle }) {
   const { t } = useTranslation();
 

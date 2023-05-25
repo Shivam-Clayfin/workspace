@@ -7,7 +7,7 @@ import "./signup.css";
 import { useTranslation } from "react-i18next";
 
 
-//pomofocous
+//pomofocous timer
 export default function Signup() {
   const navigation = useNavigate();
   const { t } = useTranslation();
