@@ -116,7 +116,7 @@ function Header({ handleCallBack }) {
           }
         </li>
         <li className="items">
-          <Link className="link" to="/">
+          <Link className="link">
             <div className="item" onClick={onChangeLang}>
               <img src="https://cdn-icons-png.flaticon.com/128/4459/4459205.png" alt="" />
               <div className="itemtext">{t("Pomo:Language")}</div>
